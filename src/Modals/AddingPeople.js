@@ -1,47 +1,47 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal.js'
-import './App.css';
-import {deleteErasedPersonsFromList, countingPersonsFromInput, addPeopleToAList} from './functions.js';
+import '../App.css';
+import { deleteErasedPersonsFromList, countingPersonsFromInput, addPeopleToAList } from './../functions.js';
 
 class AddingPeopleModal extends Component {
 
   state = {
     inputValue: '',
-    listOfPeopleInInput: [],
+    peopleListInInput: [],
   };
 
   onInputChange = (event) => {
     const inputValue = event.target.value;
-    const listOfPeopleInInput = this.state.listOfPeopleInInput.slice();
+    const peopleListInInput = this.state.peopleListInInput.slice();
 
     const peopleToAddToList = countingPersonsFromInput(inputValue);
 
-    const listWithAddedPeople = addPeopleToAList(listOfPeopleInInput, inputValue);
+    const listWithAddedPeople = addPeopleToAList(peopleListInInput, inputValue);
     const listWithErasedPeople = deleteErasedPersonsFromList(listWithAddedPeople, peopleToAddToList);
 
     this.setState({
-      listOfPeopleInInput: listWithErasedPeople,
+      peopleListInInput: listWithErasedPeople,
       inputValue,
     });
   };
 
-  cancelBtnFn = () => {
-    this.props.handleModal();
+  cancelBtnFn = (ev) => {
+    this.props.handleModal(ev, 'modalClickedAddPeople');
     this.setState({
       inputValue: '',
-      listOfPeopleInInput: [],
+      peopleListInInput: [],
     });
   };
 
-  addBtnFn = () => {
-    this.props.handleModal();
+  addBtnFn = (ev) => {
+    this.props.handleModal(ev, 'modalClickedAddPeople');
 
-    const listWithAddedPeople = addPeopleToAList(this.props.listOfPeople, this.state.inputValue);
+    const listWithAddedPeople = addPeopleToAList(this.props.peopleList, this.state.inputValue);
 
     this.setState({
       inputValue: '',
-      listOfPeopleInInput: [],
+      peopleListInInput: [],
     });
     this.props.updateMainPeopleList(listWithAddedPeople);
   };
@@ -52,7 +52,7 @@ class AddingPeopleModal extends Component {
 
   render() {
 
-    const { inputValue, listOfPeopleInInput } = this.state;
+    const { inputValue, peopleListInInput } = this.state;
     const { modalState } = this.props;
 
     return (
@@ -60,7 +60,7 @@ class AddingPeopleModal extends Component {
         <div className='inputInModalContainer'>
           <textarea className='inputInModal' onChange={(ev) => this.onInputChange(ev)} placeholder='Separá los nombres con coma' value={inputValue}/>
         </div>
-        {this.listPeopleInModal(listOfPeopleInInput)}
+        {this.listPeopleInModal(peopleListInInput)}
         <div className='buttonsInModalContainer'>
           <div onClick={this.cancelBtnFn} className='alert-button buttonsInModal'>Cancelar</div>
           <div onClick={this.addBtnFn} className='succes-button buttonsInModal'>Agregar</div>
@@ -70,11 +70,11 @@ class AddingPeopleModal extends Component {
   }
 }
 
-Modal.propTypes = {
+AddingPeopleModal.propTypes = {
   modalState: PropTypes.bool.isRequired,
   updateMainPeopleList: PropTypes.func,
   handleModal: PropTypes.func,
-  listOfPeople: PropTypes.array,
+  peopleList: PropTypes.array,
 };
 
 export default AddingPeopleModal;

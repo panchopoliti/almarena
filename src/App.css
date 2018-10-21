@@ -1,32 +1,146 @@
-.App {
+.mainContainer {
+  background-color: #fff;
+}
+
+.mainTitle {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.addPeopleButtonContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.bigButtons {
+  font-size: 20px;
+  padding: 14px;
+  border-radius: 20px;
+  margin: 0 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bigButtons:hover {
+  cursor: pointer;
+}
+
+.addPeopleButton {
+  background-color: orange;
+  color: #fff;
+}
+
+.addPeopleButton:hover {
+  background-color: #f7c05d;
+}
+
+.deleteListButton {
+  background-color: #ef5858;
+  color: #fff;
+}
+
+.deleteListButton:hover {
+  background-color: red;
+}
+
+.modalContainer {
+  margin: 8px;
+}
+
+.modalTextContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.modalText {
+  font-size: 16px;
+  padding: 10px;
+  color: orange;
+  font-weight: 700;
+}
+
+.inputInModalContainer {
+  margin: 0 10px;
+}
+
+.inputInModal {
+  width: 100%;
+  padding: 10px 3px;
+}
+
+.buttonsInModal {
+  padding: 10px 10px;
+  color: #fff;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.buttonsInModalContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 15px 20px;
+}
+
+.amountInput {
+  width: 80px;
+  text-align: center;
+}
+
+.peopleTable {
+  width: 100%;
+}
+
+td, th {
+  width: 50%;
+}
+
+.deleteRow {
+  background-color: red;
+  color: #fff;
+}
+
+.deleteRow:hover {
+  cursor: pointer;
+}
+
+.alert-button {
+  background-color: #ef5858;
+}
+
+.alert-button:hover {
+  background-color: red;
+}
+
+.succes-button {
+  background-color: #1ab394;
+}
+
+.succes-button:hover {
+  background-color: #028a6f;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.hide {
+  display: none !important;
+}
+
+.global-alert {
+  position: absolute;
+  border: 1px solid #000;
+  border-radius: 4px;
+  color: #42a94c;
+  background-color: #fff;
+  top: 38vh;
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
+  z-index: 2;
 }

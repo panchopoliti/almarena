@@ -1,64 +1,95 @@
 import React, { Component } from 'react';
 import './App.css';
-import Modal from './Modal.js';
-import AddingPeopleModal from './AddingPeople.js';
-import { deleteRowInTable } from './functions.js'
+import AddingPeopleModal from './Modals/AddingPeople.js';
+import DeletingPeopleModal from './Modals/DeletingPeople';
 
 class App extends Component {
 
   state = {
-    modal: {
-      0: false,
-      1: false,
-    },
+    modalClickedAddPeople: false,
+    modalClickedOverlay: false,
+    modalClickedDeletePeople: false,
     addingPeopleModalClicked: false,
-    listOfPeople: [],
+    personToDelete: null,
+    peopleList: [],
   };
 
-  deletePeopleInList = () => {
-    return <Modal>
+  deletingPerson = (ev, idPerson) => {
+    this.setState({personToDelete: idPerson});
 
-    </Modal>
+    this.handleModal(ev, 'modalClickedDeletePeople');
+  };
+
+  deletePersonFromList = (idx) => {
+    this.state.peopleList.splice(idx, 1);
+  };
+
+  restartPersonToDeleteState = () => {
+    this.setState({personToDelete: null});
+  };
+
+  closeEveryModal = () => {
+    Object.keys(this.state).filter(m => m.includes('modalClicked')).forEach(k => {
+
+      this.setState(() => ({
+       [k]: false,
+     }));
+
+    });
   };
 
   showPeople = () => {
-    return this.state.listOfPeople.map((person, idx) => <tr data-rowmaintable={idx} key={idx}>
+    return this.state.peopleList.map((person, idx) => <tr key={idx}>
 
       <td>{person}</td>
       <td>
         <input type='number' className='amountInput'/>
       </td>
-      <td onClick={() => deleteRowInTable(idx, 'data-rowmaintable')} className='deleteRow alert-button'>X</td>
+      <td onClick={(ev) => this.deletingPerson(ev, idx)} className='deleteRow alert-button'>X</td>
     </tr>);
   };
 
   updateMainPeopleList = (list) => {
-    this.setState({listOfPeople: list})
+    this.setState({ peopleList: list })
   };
 
-  handleModal = (indexModal) => {
-    this.setState((state) => ({ modal[indexModal]: !state.modal[indexModal] }));
+  handleModal = (ev, title = ev.target.title) => {
+    if (title === '') {
+      this.closeEveryModal();
+    } else {
+      this.setState((state) => ({
+        modalClickedOverlay: !state.modalClickedOverlay,
+        [title]: !state[title]
+      }));
+    }
   };
 
   render() {
-    const { listOfPeople } = this.state;
-
-    console.log(this.state.modalClicked, 'modalClicked');
-    console.log(this.state.addingPeopleModalClicked, 'addingPeopleModalClicked');
-
+    const { peopleList,
+      personToDelete,
+      modalClickedOverlay,
+      modalClickedDeletePeople,
+      modalClickedAddPeople } = this.state;
 
     return (
       <div className='mainContainer'>
-        <div onClick={() => this.handleModal(this.state.modalClicked)} className={(this.state.modalClicked) ? 'overlay' : 'hide overlay'}></div>
+        <div onClick={(ev) => this.handleModal(ev)} className={(modalClickedOverlay) ? 'overlay' : 'hide overlay'}></div>
         <AddingPeopleModal
-          modalState={this.state.modalClicked}
-          listOfPeople={listOfPeople}
+          modalState={modalClickedAddPeople}
+          peopleList={peopleList}
           updateMainPeopleList={this.updateMainPeopleList}
-          handleModal={this.handleModal}/>
+          handleModal={(ev, title) => this.handleModal(ev, title)}/>
+        <DeletingPeopleModal
+          modalState={modalClickedDeletePeople}
+          personId={personToDelete}
+          peopleList={peopleList}
+          deletePersonFromList={this.deletePersonFromList}
+          restartPersonToDeleteState={this.restartPersonToDeleteState}
+          handleModal={(ev, title) => this.handleModal(ev, title)}/>
         <h1 className='mainTitle'>LIQUIDACIÓN</h1>
         <div className="addPeopleButtonContainer">
-          <div onClick={() => this.handleModal(this.state.addingPeopleModalClicked)} className="addPeopleButton bigButtons">Agregar Personas</div>
-          <div onClick={() => this.setState({listOfPeople: []})} className="deleteListButton bigButtons">Borrar Lista Completa</div>
+          <div onClick={(ev) => this.handleModal(ev)} title="modalClickedAddPeople" className="addPeopleButton bigButtons">Agregar Personas</div>
+          <div onClick={() => this.setState({peopleList: []})} title="deletePeople" className="deleteListButton bigButtons">Borrar Lista Completa</div>
         </div>
         <table className='peopleTable'>
           <thead>

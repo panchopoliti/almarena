@@ -47,6 +47,6 @@ export function deleteWhiteSpaces(list) {
   });
 }
 
-export function deleteRowInTable(idx, selector) {
-  document.querySelector(`[${selector}="${idx}"]`).remove()
+export function findRowOfPersonInTable(idx, selector) {
+  return document.querySelector(`[${selector}="${idx}"]`);
 }
