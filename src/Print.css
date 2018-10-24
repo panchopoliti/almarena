@@ -1,0 +1,25 @@
+/* preloading del fondo */
+@media screen {
+    body::after{
+        position:absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+}
+
+@media only print {
+    @page {
+        size: portrait;
+        margin-top: 7.5mm;
+        margin-left: 30mm;
+    }
+
+    .defaultView {
+        display: hide;
+    }
+
+
+}

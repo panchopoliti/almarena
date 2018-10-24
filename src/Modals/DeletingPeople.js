@@ -7,26 +7,27 @@ class DeletingPeople extends Component {
 
   cancelBtnFn = (ev) => {
     this.props.handleModal(ev, 'modalClickedDeletePeople');
-    this.props.restartPersonToDeleteState();
   };
 
   deleteBtnFn = (ev) => {
-    const { deletePersonFromList, handleModal, restartPersonToDeleteState } = this.props;
+    const { deletePeopleFromList, handleModal } = this.props;
 
     handleModal(ev, 'modalClickedDeletePeople');
-    deletePersonFromList();
-    restartPersonToDeleteState();
+    deletePeopleFromList();
   };
 
   render() {
 
-    const { modalState, peopleList, personId } = this.props;
+    const { modalState } = this.props;
 
     return (
-      <Modal modalState={modalState} title={`¿Estás seguro que deseas eliminar a ${peopleList[personId]}?`}>
+      <Modal modalState={modalState}
+             closeModal={this.cancelBtnFn}
+             closeSuccessModal={this.deleteBtnFn}
+             title={'¿Estás seguro que deseas eliminar la lista?'}>
         <div className='buttonsInModalContainer'>
-          <div onClick={this.cancelBtnFn} className='alert-button buttonsInModal'>Cancelar</div>
-          <div onClick={this.deleteBtnFn} className='succes-button buttonsInModal'>Eliminar</div>
+          <div onClick={this.cancelBtnFn} className='alertButton buttonsInModal'>Cancelar</div>
+          <div onClick={this.deleteBtnFn} className='successButton buttonsInModal'>Eliminar</div>
         </div>
       </Modal>
     )
@@ -35,10 +36,7 @@ class DeletingPeople extends Component {
 
 DeletingPeople.propTypes = {
   modalState: PropTypes.bool.isRequired,
-  peopleList: PropTypes.array,
-  personId: PropTypes.number,
-  restartPersonToDeleteState: PropTypes.func,
-  deletePersonFromList: PropTypes.func,
+  deletePeopleFromList: PropTypes.func,
   handleModal: PropTypes.func,
 };
 

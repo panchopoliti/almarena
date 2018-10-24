@@ -56,14 +56,17 @@ class AddingPeopleModal extends Component {
     const { modalState } = this.props;
 
     return (
-      <Modal modalState={modalState} title='AGREGAR PERSONAS'>
+      <Modal modalState={modalState}
+             title='AGREGAR PERSONAS'
+             closeSuccessModal={this.addBtnFn}
+             closeModal={this.cancelBtnFn}>
         <div className='inputInModalContainer'>
           <textarea className='inputInModal' onChange={(ev) => this.onInputChange(ev)} placeholder='Separá los nombres con coma' value={inputValue}/>
         </div>
         {this.listPeopleInModal(peopleListInInput)}
         <div className='buttonsInModalContainer'>
-          <div onClick={this.cancelBtnFn} className='alert-button buttonsInModal'>Cancelar</div>
-          <div onClick={this.addBtnFn} className='succes-button buttonsInModal'>Agregar</div>
+          <div onClick={this.cancelBtnFn} className='alertButton buttonsInModal'>Cancelar</div>
+          <div onClick={this.addBtnFn} className='successButton buttonsInModal'>Agregar</div>
         </div>
       </Modal>
     )

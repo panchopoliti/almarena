@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Krub|Niramit');
+
 .mainContainer {
   background-color: #fff;
 }
 
 .mainTitle {
   text-align: center;
+  font-family: 'Niramit', sans-serif;
 }
 
 .addPeopleButtonContainer {
@@ -16,6 +19,8 @@
   padding: 14px;
   border-radius: 20px;
   margin: 0 5px;
+  font-family: 'Krub', sans-serif;
+  font-weight: 800;
 }
 
 .bigButtons:hover {
@@ -79,21 +84,52 @@
   margin: 15px 20px;
 }
 
-.amountInput {
-  width: 80px;
+.personContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.personNameContainer {
+  width: 35%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.personName {
+  font-size: 24px;
   text-align: center;
+  color: #878b85;
+  font-family: 'Niramit', sans-serif;
+  margin-bottom: 5px;
 }
 
-.peopleTable {
+.inputAndButtonContainer {
+  display: flex;
+  flex-direction: row;
+  width: 31%;
+}
+
+.inputInPersonContainer {
   width: 100%;
+  font-size: 16px;
+  padding: 10px 5px;
+  background-color: #f5f2f4;
+  color: #878b85;
+  font-family: 'Niramit', sans-serif;
 }
 
-td, th {
-  width: 50%;
+.printerButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 72%;
+  margin-top: 20px;
+  color: #fff;
 }
 
 .deleteRow {
-  background-color: red;
+  border-radius: 0;
   color: #fff;
 }
 
@@ -101,19 +137,19 @@ td, th {
   cursor: pointer;
 }
 
-.alert-button {
+.alertButton {
   background-color: #ef5858;
 }
 
-.alert-button:hover {
+.alertButton:hover {
   background-color: red;
 }
 
-.succes-button {
+.successButton {
   background-color: #1ab394;
 }
 
-.succes-button:hover {
+.successButton:hover {
   background-color: #028a6f;
 }
 
@@ -132,7 +168,11 @@ td, th {
   display: none !important;
 }
 
-.global-alert {
+.print {
+  display: none;
+}
+
+.globalAlert {
   position: absolute;
   border: 1px solid #000;
   border-radius: 4px;
@@ -143,4 +183,5 @@ td, th {
   left: 50%;
   margin-left: -250px;
   z-index: 2;
+  /*outline: 0;*/
 }

@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
+import './Print.css';
 import AddingPeopleModal from './Modals/AddingPeople.js';
+import DeletingPersonModal from './Modals/DeletingPerson';
 import DeletingPeopleModal from './Modals/DeletingPeople';
+
+const PeopleForm = ({ peopleList , onClick }) => {
+  return peopleList.map((person, idx) => <div key={idx} className='personContainer'>
+    <div className='personNameContainer'>
+      <span className='personName'>{person}</span>
+    </div>
+    <div className='inputAndButtonContainer'>
+      <input className='inputInPersonContainer' type='number' placeholder='Escribe el monto indicado'/>
+      <div onClick={(ev) => onClick(ev, idx)} className='alertButton bigButtons deleteRow'>X</div>
+    </div>
+  </div>);
+};
 
 class App extends Component {
 
   state = {
     modalClickedAddPeople: false,
     modalClickedOverlay: false,
+    modalClickedDeletePerson: false,
     modalClickedDeletePeople: false,
     addingPeopleModalClicked: false,
     personToDelete: null,
@@ -15,9 +30,9 @@ class App extends Component {
   };
 
   deletingPerson = (ev, idPerson) => {
-    this.setState({personToDelete: idPerson});
+    this.setState({ personToDelete: idPerson });
 
-    this.handleModal(ev, 'modalClickedDeletePeople');
+    this.handleModal(ev, 'modalClickedDeletePerson');
   };
 
   deletePersonFromList = (idx) => {
@@ -25,7 +40,7 @@ class App extends Component {
   };
 
   restartPersonToDeleteState = () => {
-    this.setState({personToDelete: null});
+    this.setState({ personToDelete: null });
   };
 
   closeEveryModal = () => {
@@ -36,17 +51,6 @@ class App extends Component {
      }));
 
     });
-  };
-
-  showPeople = () => {
-    return this.state.peopleList.map((person, idx) => <tr key={idx}>
-
-      <td>{person}</td>
-      <td>
-        <input type='number' className='amountInput'/>
-      </td>
-      <td onClick={(ev) => this.deletingPerson(ev, idx)} className='deleteRow alert-button'>X</td>
-    </tr>);
   };
 
   updateMainPeopleList = (list) => {
@@ -68,40 +72,42 @@ class App extends Component {
     const { peopleList,
       personToDelete,
       modalClickedOverlay,
+      modalClickedDeletePerson,
       modalClickedDeletePeople,
       modalClickedAddPeople } = this.state;
 
     return (
       <div className='mainContainer'>
-        <div onClick={(ev) => this.handleModal(ev)} className={(modalClickedOverlay) ? 'overlay' : 'hide overlay'}></div>
-        <AddingPeopleModal
-          modalState={modalClickedAddPeople}
-          peopleList={peopleList}
-          updateMainPeopleList={this.updateMainPeopleList}
-          handleModal={(ev, title) => this.handleModal(ev, title)}/>
-        <DeletingPeopleModal
-          modalState={modalClickedDeletePeople}
-          personId={personToDelete}
-          peopleList={peopleList}
-          deletePersonFromList={this.deletePersonFromList}
-          restartPersonToDeleteState={this.restartPersonToDeleteState}
-          handleModal={(ev, title) => this.handleModal(ev, title)}/>
-        <h1 className='mainTitle'>LIQUIDACIÓN</h1>
-        <div className="addPeopleButtonContainer">
-          <div onClick={(ev) => this.handleModal(ev)} title="modalClickedAddPeople" className="addPeopleButton bigButtons">Agregar Personas</div>
-          <div onClick={() => this.setState({peopleList: []})} title="deletePeople" className="deleteListButton bigButtons">Borrar Lista Completa</div>
+        <div className='defaultView'>
+          <div onClick={(ev) => this.handleModal(ev)} className={(modalClickedOverlay) ? 'overlay' : 'hide overlay'}></div>
+          <AddingPeopleModal
+            modalState={modalClickedAddPeople}
+            peopleList={peopleList}
+            updateMainPeopleList={this.updateMainPeopleList}
+            handleModal={(ev, title) => this.handleModal(ev, title)}/>
+          <DeletingPersonModal
+            modalState={modalClickedDeletePerson}
+            personId={personToDelete}
+            peopleList={peopleList}
+            deletePersonFromList={this.deletePersonFromList}
+            restartPersonToDeleteState={this.restartPersonToDeleteState}
+            handleModal={(ev, title) => this.handleModal(ev, title)}/>
+          <DeletingPeopleModal
+            modalState={modalClickedDeletePeople}
+            deletePeopleFromList={() => this.setState({peopleList: []})}
+            handleModal={(ev, title) => this.handleModal(ev, title)}/>
+          <h1 className='mainTitle'>LIQUIDACIÓN</h1>
+          <div className="addPeopleButtonContainer">
+            <div onClick={(ev) => this.handleModal(ev)} title="modalClickedAddPeople" className="addPeopleButton bigButtons">Agregar Personas</div>
+            <div onClick={(ev) => this.handleModal(ev)} title="modalClickedDeletePeople" className="deleteListButton bigButtons">Borrar Lista Completa</div>
+          </div>
+          <form>
+            <PeopleForm peopleList={peopleList} onClick={(ev, idPerson) => this.deletingPerson(ev, idPerson)}/>
+          </form>
+          <div className='printerButtonContainer'>
+            <div className={'successButton bigButtons'}>Imprimir</div>
+          </div>
         </div>
-        <table className='peopleTable'>
-          <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Monto</th>
-          </tr>
-          </thead>
-          <tbody>
-          {this.showPeople()}
-          </tbody>
-        </table>
       </div>
     );
   }
@@ -109,11 +115,11 @@ class App extends Component {
 
 export default App;
 
-// Hacer el Modal reutilizable
 // Avisar en el modal si una persona ya está en la lista
+// Con Esc cerrar el modal
 
 // El ClassName del div del this.state.addPersonsButtonClicked hacerlo sin repetir el overlay en ambos condicionales
-// El ClassName de div principal del modal hacerlo sin repetir el global-alert en ambos condicionales
+// El ClassName de div principal del modal hacerlo sin repetir el globalAlert en ambos condicionales
 // Cambiar los nombres del State
 // Chequear los nombres de las funciones
 // Modal with handleClick
