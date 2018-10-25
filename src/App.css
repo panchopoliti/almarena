@@ -1,187 +1,224 @@
 @import url('https://fonts.googleapis.com/css?family=Krub|Niramit');
 
-.mainContainer {
-  background-color: #fff;
-}
+@media screen {
 
-.mainTitle {
-  text-align: center;
-  font-family: 'Niramit', sans-serif;
-}
+    .mainContainer {
+        background-color: #fff;
+    }
 
-.addPeopleButtonContainer {
-  display: flex;
-  justify-content: center;
-}
+    .mainTitle {
+        text-align: center;
+        font-family: 'Niramit', sans-serif;
+    }
 
-.bigButtons {
-  font-size: 20px;
-  padding: 14px;
-  border-radius: 20px;
-  margin: 0 5px;
-  font-family: 'Krub', sans-serif;
-  font-weight: 800;
-}
+    .addPeopleButtonContainer {
+        display: flex;
+        justify-content: center;
+    }
 
-.bigButtons:hover {
-  cursor: pointer;
-}
+    .bigButtons {
+        font-size: 20px;
+        padding: 14px;
+        border-radius: 20px;
+        margin: 0 5px;
+        font-family: 'Krub', sans-serif;
+        font-weight: 800;
+    }
 
-.addPeopleButton {
-  background-color: orange;
-  color: #fff;
-}
+    .bigButtons:hover {
+        cursor: pointer;
+    }
 
-.addPeopleButton:hover {
-  background-color: #f7c05d;
-}
+    .addPeopleButton {
+        background-color: orange;
+        color: #fff;
+    }
 
-.deleteListButton {
-  background-color: #ef5858;
-  color: #fff;
-}
+    .addPeopleButton:hover {
+        background-color: #f7c05d;
+    }
 
-.deleteListButton:hover {
-  background-color: red;
-}
+    .deleteListButton {
+        background-color: #ef5858;
+        color: #fff;
+    }
 
-.modalContainer {
-  margin: 8px;
-}
+    .deleteListButton:hover {
+        background-color: red;
+    }
 
-.modalTextContainer {
-  display: flex;
-  align-items: flex-start;
-}
+    .modalContainer {
+        margin: 8px;
+    }
 
-.modalText {
-  font-size: 16px;
-  padding: 10px;
-  color: orange;
-  font-weight: 700;
-}
+    .modalTextContainer {
+        display: flex;
+        align-items: flex-start;
+    }
 
-.inputInModalContainer {
-  margin: 0 10px;
-}
+    .modalText {
+        font-size: 16px;
+        padding: 10px;
+        color: orange;
+        font-weight: 700;
+    }
 
-.inputInModal {
-  width: 100%;
-  padding: 10px 3px;
-}
+    .inputInModalContainer {
+        margin: 0 10px;
+    }
 
-.buttonsInModal {
-  padding: 10px 10px;
-  color: #fff;
-  margin: 0 5px;
-  cursor: pointer;
-}
+    .inputInModal {
+        width: 100%;
+        padding: 10px 3px;
+    }
 
-.buttonsInModalContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin: 15px 20px;
-}
+    .buttonsInModal {
+        padding: 10px 10px;
+        color: #fff;
+        margin: 0 5px;
+        cursor: pointer;
+    }
 
-.personContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 15px;
-}
+    .buttonsInModalContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 15px 20px;
+    }
 
-.personNameContainer {
-  width: 35%;
-  display: flex;
-  align-items: flex-start;
-}
+    .personContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 15px;
+    }
 
-.personName {
-  font-size: 24px;
-  text-align: center;
-  color: #878b85;
-  font-family: 'Niramit', sans-serif;
-  margin-bottom: 5px;
-}
+    .personNameContainer {
+        width: 35%;
+        display: flex;
+        align-items: flex-start;
+    }
 
-.inputAndButtonContainer {
-  display: flex;
-  flex-direction: row;
-  width: 31%;
-}
+    .personName {
+        font-size: 24px;
+        text-align: center;
+        color: #878b85;
+        font-family: 'Niramit', sans-serif;
+        margin-bottom: 5px;
+    }
 
-.inputInPersonContainer {
-  width: 100%;
-  font-size: 16px;
-  padding: 10px 5px;
-  background-color: #f5f2f4;
-  color: #878b85;
-  font-family: 'Niramit', sans-serif;
-}
+    .inputAndButtonContainer {
+        display: flex;
+        flex-direction: row;
+        width: 31%;
+    }
 
-.printerButtonContainer {
-  display: flex;
-  justify-content: flex-end;
-  width: 72%;
-  margin-top: 20px;
-  color: #fff;
-}
+    .inputForNumber {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px 5px;
+        background-color: #f5f2f4;
+        font-family: 'Niramit', sans-serif;
+        color: #878b85;
+    }
 
-.deleteRow {
-  border-radius: 0;
-  color: #fff;
-}
+    .monthAndYearContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-.deleteRow:hover {
-  cursor: pointer;
-}
+    .inputContainerMonthAndYear {
+        margin: 0 20px;
+    }
 
-.alertButton {
-  background-color: #ef5858;
-}
+    .spanTitle {
+        font-family: 'Niramit', sans-serif;
+        font-size: 19px;
+        margin-bottom: 2px;
+    }
 
-.alertButton:hover {
-  background-color: red;
-}
+    .textareaContainer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 15px 0;
+    }
 
-.successButton {
-  background-color: #1ab394;
-}
+    .textarea {
+        width: 30%;
+        background-color: #f5f2f4;
+        font-family: 'Niramit', sans-serif;
+        color: #878b85;
+        font-size: 16px;
+    }
 
-.successButton:hover {
-  background-color: #028a6f;
+    .printerButtonContainer {
+        display: flex;
+        justify-content: flex-end;
+        width: 72%;
+        margin-top: 20px;
+        color: #fff;
+    }
+
+    .deleteRow {
+        border-radius: 0;
+        color: #fff;
+    }
+
+    .deleteRow:hover {
+        cursor: pointer;
+    }
+
+    .alertButton {
+        background-color: #ef5858;
+    }
+
+    .alertButton:hover {
+        background-color: red;
+    }
+
+    .successButton {
+        background-color: #1ab394;
+    }
+
+    .successButton:hover {
+        background-color: #028a6f;
+    }
+
+    .onlyPrint {
+        display: none;
+    }
+
 }
 
 .overlay {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: black;
-  opacity: 0.5;
-  z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: black;
+    opacity: 0.5;
+    z-index: 1;
 }
 
 .hide {
-  display: none !important;
-}
-
-.print {
-  display: none;
+    display: none !important;
 }
 
 .globalAlert {
-  position: absolute;
-  border: 1px solid #000;
-  border-radius: 4px;
-  color: #42a94c;
-  background-color: #fff;
-  top: 38vh;
-  width: 500px;
-  left: 50%;
-  margin-left: -250px;
-  z-index: 2;
-  /*outline: 0;*/
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 4px;
+    color: #42a94c;
+    background-color: #fff;
+    top: 38vh;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    z-index: 2;
+    /*outline: 0;*/
 }

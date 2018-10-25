@@ -22,11 +22,13 @@ class DeletingPerson extends Component {
 
     const { modalState, peopleList, personId } = this.props;
 
+    const personName = peopleList[personId] ? peopleList[personId].name : '';
+
     return (
       <Modal modalState={modalState}
              closeModal={this.cancelBtnFn}
              closeSuccessModal={this.deleteBtnFn}
-             title={`¿Estás seguro que deseas eliminar a ${peopleList[personId]}?`}>
+             title={`¿Estás seguro que deseas eliminar a ${personName}?`}>
         <div className='buttonsInModalContainer'>
           <div onClick={this.cancelBtnFn} className='alertButton buttonsInModal'>Cancelar</div>
           <div onClick={this.deleteBtnFn} className='successButton buttonsInModal'>Eliminar</div>

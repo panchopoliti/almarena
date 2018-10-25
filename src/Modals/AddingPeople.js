@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from './Modal.js'
 import '../App.css';
-import { deleteErasedPersonsFromList, countingPersonsFromInput, addPeopleToAList } from './../functions.js';
+import {
+  deleteErasedPersonsFromList,
+  countingPersonsFromInput,
+  addPeopleToIncomeList,
+  addPeopleToAList,
+} from './../functions.js';
 
 class AddingPeopleModal extends Component {
 
@@ -37,13 +42,13 @@ class AddingPeopleModal extends Component {
   addBtnFn = (ev) => {
     this.props.handleModal(ev, 'modalClickedAddPeople');
 
-    const listWithAddedPeople = addPeopleToAList(this.props.peopleList, this.state.inputValue);
+    const listWithAddedPeople = addPeopleToIncomeList(this.props.peopleList, this.state.inputValue);
 
     this.setState({
       inputValue: '',
       peopleListInInput: [],
     });
-    this.props.updateMainPeopleList(listWithAddedPeople);
+    this.props.updateMainPeopleList('peopleList', listWithAddedPeople);
   };
 
   listPeopleInModal = (list) => {
