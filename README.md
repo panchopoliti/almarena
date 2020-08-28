@@ -5,3 +5,7 @@ My first remote work while travelling. I developed an easy way to create and pri
 ## Technologies Used
 
 React JS
+
+## Deployment
+
+Vercel Now
